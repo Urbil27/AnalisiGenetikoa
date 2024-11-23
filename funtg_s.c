@@ -106,10 +106,7 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
     distantzien_batura = 0;
     for (int j = 0; j < taldekop; j++)
     {
-      for (int k = 0; k < taldekop; k++)
-      {
-        distantzien_batura += distantzia_genetikoa(zent[j], zent[k]);
-      }
+      distantzien_batura += distantzia_genetikoa(zent[i], zent[j]);
     }
     b[i] = distantzien_batura / taldekop - 1;
   }
@@ -157,6 +154,17 @@ void eritasunen_analisia(struct taldeinfo *kideak, float eri[][ERIMOTA], struct 
   // Prozesatu eritasunei buruzko informazioa talde bakoitzeko kideen artean:
   // eritasunak agertzeko probabilitateen mediana.
   // Eritasun bakoitzerako, medianen maximoa eta minimoa eta zein taldetan.
+  float mediana[ERIMOTA];
+  for(int i=0;i<ERIMOTA;i++)
+  {
+    burbuila_ordenazioa(eri[i]);
+    mediana[i]=eri[i/2][ERIMOTA];
+  }
+
+  burbuila_ordenazioa(mediana);
+  eripro->mmax=mediana[ERIMOTA-1];
+  eripro->mmin=mediana[0];
+  
 }
 
 // PROGRAMA NAGUSIAREN BESTE BI FUNTZIO
