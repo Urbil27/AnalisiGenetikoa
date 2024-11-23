@@ -1,0 +1,1 @@
+gcc -O2 -o taldegen_s taldegen_s.c funtg_s.c -lm

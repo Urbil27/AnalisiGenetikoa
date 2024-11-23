@@ -121,7 +121,7 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
 
 
 
-void burbuila_ordenazioa(float *bek)
+void burbuila_ordenazioa(float *bek[])
 {
   int lag;
   for (int goi=sizeof(bek); goi>0; goi--)
@@ -154,17 +154,26 @@ void eritasunen_analisia(struct taldeinfo *kideak, float eri[][ERIMOTA], struct 
   // Prozesatu eritasunei buruzko informazioa talde bakoitzeko kideen artean:
   // eritasunak agertzeko probabilitateen mediana.
   // Eritasun bakoitzerako, medianen maximoa eta minimoa eta zein taldetan.
-  float mediana[ERIMOTA];
+  float mediana[ERIMOTA], taldeen_medianak[taldekop];
   for(int i=0;i<ERIMOTA;i++)
   {
     burbuila_ordenazioa(eri[i]);
-    mediana[i]=eri[i/2][ERIMOTA];
+    mediana[i]=eri[i][ERIMOTA/2];
   }
 
   burbuila_ordenazioa(mediana);
   eripro->mmax=mediana[ERIMOTA-1];
   eripro->mmin=mediana[0];
-  
+
+  for(int i = 0 ; i<taldekop; i++){
+    for(int j = 0; j<kideak[i].kop;j++){
+      burbuila_ordenazioa(kideak[i].osagaiak);
+      taldeen_medianak[i]=kideak[i].osagaiak[kideak[i].kop/2];
+    }
+  }
+  burbuila_ordenazioa(taldeen_medianak);
+  eripro->taldemax=taldeen_medianak[taldekop-1];
+  eripro->taldemin=taldeen_medianak[0];
 }
 
 // PROGRAMA NAGUSIAREN BESTE BI FUNTZIO
