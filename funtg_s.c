@@ -48,13 +48,15 @@ double distantzia_genetikoa (float *elem1, float *elem2)
 
 void talde_gertuena (int elekop, float elem[][ALDAKOP], float zent[][ALDAKOP], int *sailka)
 {
+  double distantzia_minimoa, uneko_distantzia;
+  int gertuen_talde;
   for(int i=0; i<elekop;i++){
-    double distantzia_minimoa= DBL_MAX;
-    int gertuen_talde = -1;
+    distantzia_minimoa= DBL_MAX;
+    gertuen_talde = -1;
     for(int j=0; i<taldekop;j++){
-      double unekoDistantzia = distantzia_genetikoa(elem[i],zent[j]);
-      if(unekoDistantzia< distantzia_minimoa){
-        distantzia_minimoa = unekoDistantzia;
+      uneko_distantzia = distantzia_genetikoa(elem[i],zent[j]);
+      if(uneko_distantzia< distantzia_minimoa){
+        distantzia_minimoa = uneko_distantzia;
         gertuen_talde = j;
       }
     }
