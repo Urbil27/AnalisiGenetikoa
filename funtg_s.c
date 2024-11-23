@@ -84,6 +84,17 @@ double balidazioa (float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[]
 {
 
   // EGITEKO
+  double distantzien_batura;
+  int a[taldekop];
+  for(int i=0; i<taldekop;i++){
+    distantzien_batura=0;
+    for(int j=0;j<kideak[i].kop;j++){
+      for(int k=0;k<kideak[i].kop;k++){
+        distantzien_batura+=distantzia_genetikoa(kideak[i].osagaiak[j],kideak[i].osagaiak[k]);
+      }
+    }
+    a[i]=distantzien_batura/kideak[i].kop-1;
+  }
 
 
   // Kalkulatu taldeen trinkotasuna: kideen arteko distantzien batezbestekoa
