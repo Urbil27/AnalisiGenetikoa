@@ -4,7 +4,7 @@
     funtg.h
     taldegen fitxategian erabiltzen diren funtzioen goiburukoak
 *******************************************************************/
-
+/*huy*/
 extern void   hasierako_zentroideak 
               	(float zent[][ALDAKOP]);
 
