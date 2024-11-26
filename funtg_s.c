@@ -51,7 +51,7 @@ void talde_gertuena(int elekop, float elem[][ALDAKOP], float zent[][ALDAKOP], in
   {
     distantzia_minimoa = DBL_MAX;
     gertuen_talde = -1;
-    for (int j = 0; i < taldekop; j++)
+    for (int j = 0; j < taldekop; j++)
     {
       uneko_distantzia = distantzia_genetikoa(elem[i], zent[j]);
       if (uneko_distantzia < distantzia_minimoa)
@@ -95,7 +95,7 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
     {
       for (int k = 0; k < kideak[i].kop; k++)
       {
-        distantzien_batura += distantzia_genetikoa(kideak[i].osagaiak[j], kideak[i].osagaiak[k]);
+        distantzien_batura += distantzia_genetikoa(&kideak[i].osagaiak[j], &kideak[i].osagaiak[k]);
       }
     }
     a[i] = distantzien_batura / kideak[i].kop - 1;
@@ -165,8 +165,10 @@ void eritasunen_analisia(struct taldeinfo *kideak, float eri[][ERIMOTA], struct 
   eripro->mmax=mediana[ERIMOTA-1];
   eripro->mmin=mediana[0];
 
-  for(int i = 0 ; i<taldekop; i++){
-    for(int j = 0; j<kideak[i].kop;j++){
+  for(int i = 0 ; i<taldekop; i++)
+  {
+    for(int j = 0; j<kideak[i].kop;j++)
+    {
       burbuila_ordenazioa(kideak[i].osagaiak);
       taldeen_medianak[i]=kideak[i].osagaiak[kideak[i].kop/2];
     }
