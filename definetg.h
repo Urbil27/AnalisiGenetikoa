@@ -4,7 +4,7 @@
     definetg.h
     taldegen eta funtg fitxategietan erabiltzen diren konstanteak eta datu-egiturak
 **********************************************************************************/
-//Hola
+
 
 // konstanteak
 
