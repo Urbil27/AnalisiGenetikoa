@@ -124,10 +124,10 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
 
 
 
-void burbuila_ordenazioa(float *bek[])
+void burbuila_ordenazioa(float bek[],int tamaina)
 {
-  int lag;
-  for (int goi=sizeof(bek); goi>0; goi--)
+  float lag;
+  for (int goi= tamaina; goi>0; goi--)
   {
     for (int i=0; i<goi; i++)
     {
@@ -160,11 +160,11 @@ void eritasunen_analisia(struct taldeinfo *kideak, float eri[][ERIMOTA], struct 
   float mediana[ERIMOTA], taldeen_medianak[taldekop];
   for(int i=0;i<ERIMOTA;i++)
   {
-    burbuila_ordenazioa(eri[i]);
+    burbuila_ordenazioa(eri[i], ERIMOTA);
     mediana[i]=eri[i][ERIMOTA/2];
   }
 
-  burbuila_ordenazioa(mediana);
+  burbuila_ordenazioa(mediana, ERIMOTA);
   eripro->mmax=mediana[ERIMOTA-1];
   eripro->mmin=mediana[0];
 
@@ -172,11 +172,11 @@ void eritasunen_analisia(struct taldeinfo *kideak, float eri[][ERIMOTA], struct 
   {
     for(int j = 0; j<kideak[i].kop;j++)
     {
-      burbuila_ordenazioa(kideak[i].osagaiak);
+      burbuila_ordenazioa(kideak[i].osagaiak, kideak[i].kop);
       taldeen_medianak[i]=kideak[i].osagaiak[kideak[i].kop/2];
     }
   }
-  burbuila_ordenazioa(taldeen_medianak);
+  burbuila_ordenazioa(taldeen_medianak, taldekop);
   eripro->taldemax=taldeen_medianak[taldekop-1];
   eripro->taldemin=taldeen_medianak[0];
 }
