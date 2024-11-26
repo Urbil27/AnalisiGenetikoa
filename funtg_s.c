@@ -85,35 +85,49 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
 
   // Kalkulatu cvi indizea
   double distantzien_batura, cvi_batukaria;
-  float elem1, elem2;
+  int tamaina;
+  int kont;
   int a[taldekop];
   int b[taldekop];
 
   for (int i = 0; i < taldekop; i++)
   {
     distantzien_batura = 0;
-    for (int j = 0; j < kideak[i].kop; j++)
-    {
-      for (int k = 0; k < kideak[i].kop; k++)
+    kont = 0;
+    tamaina = kideak[i].kop;
+    if (tamaina>1) {
+      for (int j = 0; j < tamaina; j++)
       {
-        elem1 = (float) kideak[i].osagaiak[j];
-        elem2 = (float) kideak[i].osagaiak[k];
-        distantzien_batura += distantzia_genetikoa(&elem1, &elem2);
+        for (int k = 0; k < tamaina; k++)    
+        {
+          if (j!=k) {     // elementu bera ez kalkulatzeko
+             distantzien_batura += distantzia_genetikoa(elem[kideak[i].osagaiak[j]], elem[kideak[i].osagaiak[k]]);
+             kont++;
+          }
+        }
       }
+      a[i] = distantzien_batura / kont;
+    } else {     
+      a[i] = 0.0;
     }
-    a[i] = distantzien_batura / kideak[i].kop - 1;
   }
 
   for (int i = 0; i < taldekop; i++)
   {
     distantzien_batura = 0;
+    kont = 0;
     for (int j = 0; j < taldekop; j++)
     {
-      distantzien_batura += distantzia_genetikoa(zent[i], zent[j]);
+      if (i!=j) 
+      {
+        distantzien_batura += distantzia_genetikoa(zent[i], zent[j]);
+        kont++;
+      }
     }
-    b[i] = distantzien_batura / taldekop - 1;
+    b[i] = distantzien_batura / kont;
   }
 
+  cvi_batukaria=0;
   for (int i = 0; i < taldekop; i++)
   {
     cvi_batukaria += (b[i] - a[i]) / fmax(a[i], b[i]);
