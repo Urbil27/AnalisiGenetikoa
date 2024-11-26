@@ -87,7 +87,6 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
   double distantzien_batura, cvi_batukaria;
   int tamaina;
   int kont;
-  int a[taldekop];
   int b[taldekop];
 
   for (int i = 0; i < taldekop; i++)
@@ -106,9 +105,9 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
           }
         }
       }
-      a[i] = distantzien_batura / kont;
+      talde_trinko[i] = distantzien_batura / kont;
     } else {     
-      a[i] = 0.0;
+      talde_trinko[i] = 0.0;
     }
   }
 
@@ -130,7 +129,7 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
   cvi_batukaria=0;
   for (int i = 0; i < taldekop; i++)
   {
-    cvi_batukaria += (b[i] - a[i]) / fmax(a[i], b[i]);
+    cvi_batukaria += (b[i] - talde_trinko[i]) / fmax(talde_trinko[i], b[i]);
   }
 
   return cvi_batukaria / taldekop;
