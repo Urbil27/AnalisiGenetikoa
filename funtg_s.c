@@ -124,10 +124,10 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
 
 
 
-void burbuila_ordenazioa(float bek[],int tamaina)
+void burbuila_ordenazioa(float *bek,int tamaina)
 {
   float lag;
-  for (int goi= tamaina; goi>0; goi--)
+  for (int goi=tamaina; goi>0; goi--)
   {
     for (int i=0; i<goi; i++)
     {
