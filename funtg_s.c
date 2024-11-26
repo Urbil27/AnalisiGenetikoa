@@ -85,6 +85,7 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
 
   // Kalkulatu cvi indizea
   double distantzien_batura, cvi_batukaria;
+  float elem1, elem2;
   int a[taldekop];
   int b[taldekop];
 
@@ -95,7 +96,9 @@ double balidazioa(float elem[][ALDAKOP], struct taldeinfo *kideak, float zent[][
     {
       for (int k = 0; k < kideak[i].kop; k++)
       {
-        distantzien_batura += distantzia_genetikoa(&kideak[i].osagaiak[j], &kideak[i].osagaiak[k]);
+        elem1 = (float) kideak[i].osagaiak[j];
+        elem2 = (float) kideak[i].osagaiak[k];
+        distantzien_batura += distantzia_genetikoa(&elem1, &elem2);
       }
     }
     a[i] = distantzien_batura / kideak[i].kop - 1;
